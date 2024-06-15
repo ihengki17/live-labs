@@ -26,7 +26,7 @@ In order to successfully complete this demo you need to install few tools before
 
    ```bash
    git clone https://github.com/confluentinc/live-labs.git
-   cd DIMT2024
+   cd DIMT2024-ID
    ```
 
 1. Create an `.accounts` file by running the following command.
@@ -59,7 +59,7 @@ Update the `.accounts` file for the following variables with your credentials.
 1. Navigate to the `confluent` directory of the project and run `create_env.sh` script. This bash script copies the content of `.accounts` file into a new file called `.env` and append additional variables to it.
 
    ```bash
-   cd DIMT2024/confluent
+   cd DIMT2024-ID/confluent
    ./create_env.sh
    ```
 
@@ -78,7 +78,7 @@ Update the `.accounts` file for the following variables with your credentials.
 1. Navigate to the repo's terraform directory.
 
    ```bash
-   cd DIMT2024/terraform
+   cd DIMT2024-ID/terraform
    ```
 
 1. Initialize Terraform within the directory.
@@ -146,10 +146,6 @@ Update the `.accounts` file for the following variables with your credentials.
 </div>
 
 5. Select **AWS Singapore Region** for Stream Governance Essentials, click **Continue**.
-
-<div align="center" padding=25px>
-    <img src="images/stream-governance-2-singapore.png" width=50% height=50%>
-</div>
 
 6. Now that you have an environment, click **Create Cluster**. 
 
@@ -332,6 +328,7 @@ You can create the connector either through CLI or Confluent Cloud web UI.
 18. Repeat the same step to create another 3 connectors with this configuration.
 
 <div align="center">
+
 | setting                            | value                        |
 |------------------------------------|------------------------------|
 | name                               | DatagenSourceConnector_shoe_customers   | 
@@ -345,6 +342,7 @@ You can create the connector either through CLI or Confluent Cloud web UI.
 </div>
 
 <div align="center">
+
 | setting                            | value                        |
 |------------------------------------|------------------------------|
 | name                               | DatagenSourceConnector_shoe_orders   | 
@@ -358,6 +356,7 @@ You can create the connector either through CLI or Confluent Cloud web UI.
 </div>
 
 <div align="center">
+
 | setting                            | value                        |
 |------------------------------------|------------------------------|
 | name                               | DatagenSourceConnector_shoes   | 
@@ -550,7 +549,7 @@ You can create the connection from Confluent Cloud to Imply Polaris using the co
 1. Run .
 
    ```bash
-   cd DIMT2024/confluent
+   cd DIMT2024-ID/confluent
    confluent connect cluster create --config-file actual_mongodb_sink.json
    ```
 
@@ -582,13 +581,13 @@ Congratulations on building your streaming data pipelines in Confluent Cloud! Yo
 1. Run the following command to delete all connectors
 
    ```bash
-   cd DIMT2024/confluent
+   cd DIMT2024-ID/confluent
    ./teardown_connectors.sh
    ```
 
 1. Run the following command to delete all resources created by Terraform
    ```bash
-   cd DIMT2024/terraform
+   cd DIMT2024-ID/terraform
    terraform destroy -auto-approve
    ```
 
