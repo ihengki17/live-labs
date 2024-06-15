@@ -3,7 +3,7 @@
 Welcome to HappyFeet store - Where Every Step Matters! In this workshop, we harness the power of customer data, clickstreams, and order information to identify customers who spend minimal time on our website. Our goal is to launch a targeted marketing campaign that re-engages these customers, ensuring that every second they spend on our website is worthwhile. Join us in this journey to provide a personalized and memorable shopping experience at HappyFeet, where style, comfort, and exceptional customer service converge.
 
 <div align="center"> 
-  <img src="images/arch_diagram_updated.png" width =100% heigth=100%>
+  <img src="images/update_diagram.png" width =100% heigth=100%>
 </div>
 
 ---
@@ -14,7 +14,6 @@ In order to successfully complete this demo you need to install few tools before
 
 - If you don't have a Confluent Cloud account, sign up for a free trial [here](https://www.confluent.io/confluent-cloud/tryfree).
 - Install Confluent Cloud CLI by following the instructions [here](https://docs.confluent.io/confluent-cli/current/install.html).
-- Sign up for a free MongoDB Atlas account [here](https://www.mongodb.com/cloud/atlas/register?utm_campaign=devrel&utm_source=workshop&utm_medium=cta&utm_content=Confluent%20x%20AWS%20x%20MongoDB%20Workshop%20%40%20Data%20in%20Motion%20Tour%20FY25&utm_term=jade.furubayashi).
 - Download and Install Terraform [here](https://developer.hashicorp.com/terraform/downloads?ajs_aid=837a4ee4-253b-4b3d-bf11-952575792ad1&product_intent=terraform)
 
   > **Note:** This demo was built and validate on a Mac (x86).
@@ -33,7 +32,7 @@ In order to successfully complete this demo you need to install few tools before
 1. Create an `.accounts` file by running the following command.
 
    ```bash
-   echo "CONFLUENT_CLOUD_EMAIL=add_your_email\nCONFLUENT_CLOUD_PASSWORD=add_your_password\nexport TF_VAR_confluent_cloud_api_key=\"add_your_api_key\"\nexport TF_VAR_confluent_cloud_api_secret=\"add_your_api_secret\"\nexport TF_VAR_mongodbatlas_public_key=\"add_your_public_key\"\nexport TF_VAR_mongodbatlas_private_key=\"add_your_private_key\"\nexport TF_VAR_mongodbatlas_org_id=\"add_your_org_id\"" > .accounts
+   echo "CONFLUENT_CLOUD_EMAIL=add_your_email\nCONFLUENT_CLOUD_PASSWORD=add_your_password\nexport TF_VAR_confluent_cloud_api_key=\"add_your_api_key\"\nexport TF_VAR_confluent_cloud_api_secret=\"add_your_api_secret\"\nexport 
    ```
 
    > **Note:** This repo ignores `.accounts` file
@@ -44,17 +43,6 @@ Create Confluent Cloud API keys by following [this](https://registry.terraform.i
 
 > **Note:** This is different than Kafka cluster API keys.
 
-### MongoDB Atlas
-
-1. Log into [MongoDB web UI](https://www.mongodb.com/).
-
-1. Use the left-hand side menu an navigate to **Settings** and copy the **Organization ID**. You'll update the `.accounts` file later with this value.
-
-1. Create an API key pair so Terraform can create resources in the Atlas cluster. To do this, use the left-hand and click on **Access Manager** then **Create API Key** on the top right-side of the screen.
-1. Add a description and select **Organization Owner** for the permission level.
-
-1. For detailed instructions and troubleshooting visit the [docs](https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs#configure-atlas-programmatic-access).
-
 ### Update the accounts file
 
 Update the `.accounts` file for the following variables with your credentials.
@@ -64,9 +52,6 @@ Update the `.accounts` file for the following variables with your credentials.
  CONFLUENT_CLOUD_PASSWORD=<replace>
  export TF_VAR_confluent_cloud_api_key="<replace>"
  export TF_VAR_confluent_cloud_api_secret="<replace>"
- export TF_VAR_mongodbatlas_public_key="<replace>"
- export TF_VAR_mongodbatlas_private_key="<replace>"
- export TF_VAR_mongodbatlas_org_id="<replace>"
 ```
 
 ### Create a local environment file
@@ -88,6 +73,8 @@ Update the `.accounts` file for the following variables with your credentials.
 
 ### Build your cloud infrastructure
 
+<details>
+    <summary><b>Terraform</b></summary>
 1. Navigate to the repo's terraform directory.
 
    ```bash
@@ -118,7 +105,7 @@ Update the `.accounts` file for the following variables with your credentials.
 
 1. Run the `setup.sh` script.
    ```bash
-   cd DIMT2024/confluent
+   cd DIMT2024-ID/confluent
    ./setup.sh
    ```
 1. This script achieves the following:
@@ -131,6 +118,104 @@ Update the `.accounts` file for the following variables with your credentials.
    ```bash
    source ../.env
    ```
+</details>
+<br>
+
+<details>
+    <summary><b>Cloud Console UI</b></summary>
+1. Log into [Confluent Cloud](https://confluent.cloud) and enter your email and password.
+
+<div align="center" padding=25px>
+    <img src="images/login.png" width=50% height=50%>
+</div>
+
+2. If you are logging in for the first time, you will see a self-guided wizard that walks you through spinning up a cluster. Please minimize this as you will walk through those steps in this workshop. 
+
+3. Click **+ Add Environment**. Specify an **Environment Name** and Click **Create**. 
+
+>**Note:** There is a *default* environment ready in your account upon account creation. You can use this *default* environment for the purpose of this workshop if you do not wish to create an additional environment.
+
+<div align="center" padding=25px>
+    <img src="images/environment.png" width=50% height=50%>
+</div>
+
+4. Select **Essentials** for Stream Governance Packages, click **Begin configuration**.
+
+<div align="center" padding=25px>
+    <img src="images/stream-governance-1.png" width=50% height=50%>
+</div>
+
+5. Select **AWS Sydney Region** for Stream Governance Essentials, click **Continue**.
+
+<div align="center" padding=25px>
+    <img src="images/stream-governance-2.png" width=50% height=50%>
+</div>
+
+6. Now that you have an environment, click **Create Cluster**. 
+
+> **Note:** Confluent Cloud clusters are available in 3 types: Basic, Standard, and Dedicated. Basic is intended for development use cases so you will use that for the workshop. Basic clusters only support single zone availability. Standard and Dedicated clusters are intended for production use and support Multi-zone deployments. If you are interested in learning more about the different types of clusters and their associated features and limits, refer to this [documentation](https://docs.confluent.io/current/cloud/clusters/cluster-types.html).
+
+7. Chose the **Basic** cluster type. 
+
+<div align="center" padding=25px>
+    <img src="images/cluster-type.png" width=50% height=50%>
+</div>
+
+8. Click **Begin Configuration**. 
+9. Choose your preferred Cloud Provider (AWS, GCP, or Azure), region, and availability zone. 
+10. Specify a **Cluster Name**. For the purpose of this lab, any name will work here. 
+
+<div align="center" padding=25px>
+    <img src="images/create-cluster.png" width=50% height=50%>
+</div>
+
+11. View the associated *Configuration & Cost*, *Usage Limits*, and *Uptime SLA* information before launching. 
+12. Click **Launch Cluster**. 
+
+13. On the navigation menu, select **Flink** and click **Create Compute Pool**.
+
+<div align="center" padding=25px>
+    <img src="images/create-flink-pool-1.png" width=50% height=50%>
+</div>
+
+14. Select **Region** and then **Continue**.
+<div align="center" padding=25px>
+    <img src="images/create-flink-pool-2.png" width=50% height=50%>
+</div>
+
+15. Name you Pool Name and set the capacity units (CFUs) to **5**. Click **Finish**.
+
+<div align="center" padding=25px>
+    <img src="images/create-flink-pool-3.png" width=50% height=50%>
+</div>
+
+> **Note:** The capacity of a compute pool is measured in CFUs. Compute pools expand and shrink automatically based on the resources required by the statements using them. A compute pool without any running statements scale down to zero. The maximum size of a compute pool is configured during creation. 
+
+16. Flink Compute pools will be ready shortly. You can click **Open SQL workspace** when the pool is ready to use.
+
+<div align="center" padding=25px>
+    <img src="images/create-flink-pool-4.png" width=50% height=50%>
+</div>
+
+17. Change your workspace name by clicking **settings button**. Click **Save changes** after you update the workspace name.
+
+<div align="center" padding=25px>
+    <img src="images/flink-workspace-1.png" width=50% height=50%>
+</div>
+
+18. Set the default Catalog as your environment name.
+
+<div align="center" padding=25px>
+    <img src="images/flink-workspace-2.png" width=50% height=50%>
+</div>
+
+19. Set the default Database as your cluster name.
+
+<div align="center" padding=25px>
+    <img src="images/flink-workspace-3.png" width=50% height=50%>
+</div>
+</details>
+<br>
 
 # Demo
 
@@ -364,14 +449,14 @@ If you’re interested in learning more about Flink, you can take the Apache Fli
 
 ---
 
-## Connect MongoDB Atlas to Confluent Cloud
+## Connect Imply Polaris to Confluent Cloud
 
-You can create the MongoDB Atlas Sink connector either through CLI or Confluent Cloud web UI.
+You can create the connection from Confluent Cloud to Imply Polaris using the connector on Kafka Ingestion on Imply Polaris.
 
 <details>
     <summary><b>CLI</b></summary>
 
-1. Run the following command to create the MongoDB Atlas Sink connector.
+1. Run .
 
    ```bash
    cd DIMT2024/confluent
@@ -384,16 +469,10 @@ You can create the MongoDB Atlas Sink connector either through CLI or Confluent 
 <details>
     <summary><b>Confluent Cloud Web UI</b></summary>
 
-1. On the navigation menu, select **Connectors** and **+ Add connector**.
-1. In the search bar search for **MongoDB** and select the **MongoDB Atlas Sink** which is a fully-managed connector.
-1. Create a new MongoDB Atlas Sink connector and complete the required fields using `actual_mongodb_sink.json` file.
+1. O.
 
 </details>
 <br>
-
-Once the connector is in **Running** state navigate to **cloud.mongodb.com → Collections → dimt.inactive_users** and verify messages are showing up correctly.
-
-Refer to our [documentation](https://docs.confluent.io/cloud/current/connectors/cc-mongo-db-sink.html) for detailed instructions about this connector.
 
 ---
 
