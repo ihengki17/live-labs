@@ -22,10 +22,6 @@ SR_URL=schema-registry-url
 SR_AUTH_BASIC_USER_INFO=USER_INFO
 SR_USER_INFO=sr-info
 
-MONGO_USERNAME=admin
-MONGO_PASSWORD=dimt-c0nflu3nt!
-MONGO_ENDPOINT=mongodb-endpoint
-MONGO_DATABASE_NAME=dimt
 EOF
 )
 

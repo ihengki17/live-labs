@@ -145,10 +145,10 @@ Update the `.accounts` file for the following variables with your credentials.
     <img src="images/stream-governance-1.png" width=50% height=50%>
 </div>
 
-5. Select **AWS Sydney Region** for Stream Governance Essentials, click **Continue**.
+5. Select **AWS Singapore Region** for Stream Governance Essentials, click **Continue**.
 
 <div align="center" padding=25px>
-    <img src="images/stream-governance-2.png" width=50% height=50%>
+    <img src="images/stream-governance-2-singapore.png" width=50% height=50%>
 </div>
 
 6. Now that you have an environment, click **Create Cluster**. 
@@ -162,7 +162,7 @@ Update the `.accounts` file for the following variables with your credentials.
 </div>
 
 8. Click **Begin Configuration**. 
-9. Choose your preferred Cloud Provider (AWS, GCP, or Azure), region, and availability zone. 
+9. Choose your preferred Cloud Provider (AWS, GCP, or Azure) on **Singapore Region**. 
 10. Specify a **Cluster Name**. For the purpose of this lab, any name will work here. 
 
 <div align="center" padding=25px>
@@ -178,7 +178,7 @@ Update the `.accounts` file for the following variables with your credentials.
     <img src="images/create-flink-pool-1.png" width=50% height=50%>
 </div>
 
-14. Select **Region** and then **Continue**.
+14. Select **Singapore Region** on the same Cloud Service Provider as your Confluent Cluster and then **Continue**.
 <div align="center" padding=25px>
     <img src="images/create-flink-pool-2.png" width=50% height=50%>
 </div>
@@ -230,7 +230,7 @@ You can use Confluent Cloud CLI to submit all the source connectors automaticall
 Run a script that uses your `.env` file to generate real connector configuration json files from the example files located in the `confluent` folder.
 
 ```bash
-cd DIMT2024/confluent
+cd DIMT2024-ID/confluent
 ./create_connector_files.sh
 ```
 
@@ -259,7 +259,7 @@ You can create the connector either through CLI or Confluent Cloud web UI.
 1. Run the following commands to create Datagen source connectors.
 
    ```bash
-   cd DIMT2024/confluent
+   cd DIMT2024-ID/confluent
    confluent connect cluster create --config-file actual_datagen_clickstream.json
    confluent connect cluster create --config-file actual_datagen_shoe_customers.json
    confluent connect cluster create --config-file actual_datagen_shoe_orders.json
@@ -273,11 +273,102 @@ You can create the connector either through CLI or Confluent Cloud web UI.
     <summary><b>Confluent Cloud Web UI</b></summary>
 
 1. Log into Confluent Cloud by navigating to confluent.io and click on the **Login** on the top right corner.
-1. Step into **Data_In_Motion_Tour** environment.
-1. Step into **dimt_kafka_cluster**.
-1. On the navigation menu, select **Connectors** and then **+ Add connector**.
-1. In the search bar search for **Sample Data** and select the **Sample Data** which is a fully-managed connector.
-1. Create 4 new connectors using values in `actual_datagen_*` files.
+2. Step into **Data_In_Motion_Tour** environment or your existing environment.
+3. Step into **dimt_kafka_cluster** or your new created cluster.
+
+##You could skip to step number 12 if you've build the environment using Terraform
+4. On the same navigation menu, select **Topics** and click **Create Topic**. 
+5. Enter **clickstream** as the topic name, **1** as the number of partitions, and then click **Create with defaults**.
+5. Repeat the previous step and create a second topic name **customers** and **1** as the number of partitions.
+6. Repeat the previous step and create a second topic name **orders** and **1** as the number of partitions.
+7. Repeat the previous step and create a second topic name **shoes** and **1** as the number of partitions.
+8. Click **API Keys** on the navigation menu. 
+9. Click **Create Key** in order to create your first API Key. If you have an existing API Key select **+ Add Key** to create another API Key.
+
+<div align="center" padding=25px>
+    <img src="images/create-apikey.png" width=75% height=75%>
+</div>
+
+10. Select **Global Access** and then click **Next**. 
+11. Copy or save your API Key and Secret somewhere. You will need these later on in the lab, you will not be able to view the secret again once you close this dialogue. 
+
+12. On the navigation menu, select **Connectors** and then **+ Add connector**.
+13. In the search bar search for **Sample Data** and select the **Sample Data** which is a fully-managed connector.
+14. Create the connector that will send data to **clickstream**. From the Confluent Cloud UI, click on the **Connectors** tab on the navigation menu. Click on the **Datagen Source** icon.
+
+<div align="center" padding=25px>
+    <img src="images/connectors.png" width=75% height=75%>
+</div>
+
+15. Enter the following configuration details. The remaining fields can be left blank.
+
+<div align="center">
+
+| setting                            | value                        |
+|------------------------------------|------------------------------|
+| name                               | DatagenSourceConnector_clickstream   | 
+| api key                            | [*from step 8* ]             |
+| api secret                         | [*from step 8* ]             |
+| topic                              | clickstream                  |
+| output message format              | AVRO                         |
+| quickstart                         | SHOE_CLICKSTREAM             |
+| max interval between messages (ms) | 1000                         |
+| tasks                              | 1                            |
+</div>
+
+<div align="center" padding=25px>
+    <img src="images/datagen-1.png" width=75% height=75%>
+    <img src="images/datagen-2.png" width=75% height=75%>
+</div>
+
+16. Click on **Show advanced configurations** and complete the necessary fields and click **Continue**.
+
+<div align="center" padding=25px>
+    <img src="images/datagen-3.png" width=75% height=75%>
+</div>
+   
+17. Before launching the connector, you should see something similar to the following. If everything looks similar, select **Launch**. 
+
+18. Repeat the same step to create another 3 connectors with this configuration.
+
+<div align="center">
+| setting                            | value                        |
+|------------------------------------|------------------------------|
+| name                               | DatagenSourceConnector_shoe_customers   | 
+| api key                            | [*from step 8* ]             |
+| api secret                         | [*from step 8* ]             |
+| topic                              | customers                    |
+| output message format              | AVRO                         |
+| quickstart                         | SHOE_CUSTOMERS               |
+| max interval between messages (ms) | 1000                         |
+| tasks                              | 1                            |
+</div>
+
+<div align="center">
+| setting                            | value                        |
+|------------------------------------|------------------------------|
+| name                               | DatagenSourceConnector_shoe_orders   | 
+| api key                            | [*from step 8* ]             |
+| api secret                         | [*from step 8* ]             |
+| topic                              | orders                       |
+| output message format              | AVRO                         |
+| quickstart                         | SHOE_ORDERS                  |
+| max interval between messages (ms) | 1000                         |
+| tasks                              | 1                            |
+</div>
+
+<div align="center">
+| setting                            | value                        |
+|------------------------------------|------------------------------|
+| name                               | DatagenSourceConnector_shoes   | 
+| api key                            | [*from step 8* ]             |
+| api secret                         | [*from step 8* ]             |
+| topic                              | shoes                        |
+| output message format              | AVRO                         |
+| quickstart                         | SHOES                        |
+| max interval between messages (ms) | 1000                         |
+| tasks                              | 1                            |
+</div>
 
 </details>
 <br>

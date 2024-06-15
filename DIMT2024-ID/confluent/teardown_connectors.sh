@@ -27,7 +27,6 @@ datagen_shoe_cliskstream=$(confluent connect cluster list -o json | jq -r '.[] |
 datagen_shoe_customers=$(confluent connect cluster list -o json | jq -r '.[] | select(.name | contains ("Datagen_Shoe_Customers")) | .id')
 datagen_shoe_orders=$(confluent connect cluster list -o json | jq -r '.[] | select(.name | contains ("Datagen_Shoe_Orders")) | .id')
 datagen_shoes=$(confluent connect cluster list -o json | jq -r '.[] | select(.name | contains ("Datagen_Shoes")) | .id')
-mongodb_id=$(confluent connect cluster list -o json | jq -r '.[] | select(.name | contains ("MongoDbAtlasSinkConnector")) | .id')
 
 # Delete all connectors
 echo "Deleting connectors..."
@@ -35,4 +34,3 @@ confluent connect cluster delete --force "$datagen_shoe_cliskstream"
 confluent connect cluster delete --force "$datagen_shoe_customers"
 confluent connect cluster delete --force "$datagen_shoe_orders"
 confluent connect cluster delete --force "$datagen_shoes"
-confluent connect cluster delete --force "$mongodb_id"

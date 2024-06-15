@@ -62,8 +62,3 @@ sleep $sleep_time
 # Read values from resources.json and update the "$env_file" file.
 # These resources are created by Terraform
 json=$(cat "$resources_file")
-
-mongodbatlas_connection_string=$(echo "$json" | jq -r '.mongodbatlas_connection_string.value'| sed 's/mongodb+srv:\/\///')
-
-# Updating the "$env_file" file with sed command
-sed -i .bak "s^mongodb-endpoint^$mongodbatlas_connection_string^g" "$env_file" 
