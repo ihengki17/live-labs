@@ -30,7 +30,7 @@ provider "aws" {
 }
 
 resource "confluent_environment" "dimt2024" {
-  display_name = "Data_In_Motion_Tour"
+  display_name = "Data_In_Motion_Tour_Indonesia"
 }
 
 data "confluent_schema_registry_region" "sg_package" {

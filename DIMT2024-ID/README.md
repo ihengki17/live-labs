@@ -13,6 +13,8 @@ Welcome to HappyFeet store - Where Every Step Matters! In this workshop, we harn
 In order to successfully complete this demo you need to install few tools before getting started.
 
 - If you don't have a Confluent Cloud account, sign up for a free trial [here](https://www.confluent.io/confluent-cloud/tryfree).
+- If you don't have a Imply Polaris account, sign up for a free trial
+    [here](https://signup.imply.io/get-started?_ga=2.98311711.1835424339.1718357314-1843485141.1718176292))
 - Install Confluent Cloud CLI by following the instructions [here](https://docs.confluent.io/confluent-cli/current/install.html).
 - Download and Install Terraform [here](https://developer.hashicorp.com/terraform/downloads?ajs_aid=837a4ee4-253b-4b3d-bf11-952575792ad1&product_intent=terraform)
 
@@ -228,6 +230,7 @@ Run a script that uses your `.env` file to generate real connector configuration
 ```bash
 cd DIMT2024-ID/confluent
 ./create_connector_files.sh
+./create_connectors.sh
 ```
 
 ### Produce Sample Data
@@ -543,27 +546,9 @@ If you’re interested in learning more about Flink, you can take the Apache Fli
 
 You can create the connection from Confluent Cloud to Imply Polaris using the connector on Kafka Ingestion on Imply Polaris.
 
-<details>
-    <summary><b>CLI</b></summary>
+1. Sign-in to Imply Polaris
 
-1. Run .
-
-   ```bash
-   cd DIMT2024-ID/confluent
-   confluent connect cluster create --config-file actual_mongodb_sink.json
-   ```
-
-</details>
-<br>
-
-<details>
-    <summary><b>Confluent Cloud Web UI</b></summary>
-
-1. O.
-
-</details>
-<br>
-
+2.
 ---
 
 ## CONGRATULATIONS

@@ -9,7 +9,7 @@ env_file="${parent_dir}/.env"
 resources_file="${parent_dir}/resources.json"
 
 # Use confluent environment
-confluent login --save
+confluent login --organization-id eb2976d2-949c-4e74-88ef-848321cca158 --save
 export CCLOUD_ENV_ID=$(confluent environment list -o json \
     | jq -r '.[] | select(.name | contains('\"${CCLOUD_ENV_NAME:-Data_In_Motion_Tour}\"')) | .id')
 
