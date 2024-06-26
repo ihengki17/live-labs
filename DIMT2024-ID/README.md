@@ -552,7 +552,7 @@ https://id.imply.io/auth/
 
 <div align="center" padding=25px>
     <img src="images/signinpolaris-1.png" width=75% height=75%>
-    <img src="images/signinpolaris.png" width=75% height=75%>
+    <img src="images/signinpolaris-2.png" width=75% height=75%>
 </div>
 
 2. Create Connector from Confluent Cloud into Imply (Job)
