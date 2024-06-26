@@ -555,40 +555,47 @@ https://id.imply.io/auth/
     <img src="images/signinpolaris-2.png" width=25% height=25%>
 </div>
 
-2. Create Connector from Confluent Cloud into Imply (Job)
+2. Create the Imply Polaris Project
+
+<div align="center" padding=25px>
+    <img src="images/imply-project.png" width=75% height=75%>
+</div>
+
+3. Create Connector from Confluent Cloud into Imply (Job)
 
 <div align="center" padding=25px>
     <img src="images/cc-imply-1.png" width=75% height=75%>
 </div>
 
-3. Create a new table for the DIMT
+4. Create a new table for the DIMT
 
 <div align="center" padding=25px>
     <img src="images/cc-imply-2.png" width=75% height=75%>
 </div>
 
-4. Create the Connection for Confluent Cloud
+5. Create the Connection for Confluent Cloud
 
 <div align="center" padding=25px>
     <img src="images/cc-imply-3.png" width=75% height=75%>
 </div>
 
-5. Fill all the columns using your Confluent Cloud environment and Credentials and click create connection then you could proceed by click **next** on the right top
+6. Fill all the columns using your Confluent Cloud environment and Credentials and click create connection then you could proceed by click **next** on the right top
 
 <div align="center" padding=25px>
     <img src="images/cc-imply-4.png" width=75% height=75%>
 </div>
 
-6. Now we need to create connection over our stream governance to parsing the schemas or structure to Imply Table.
+7. Now we need to create connection over our stream governance to parsing the schemas or structure to Imply Table.
+
 **NOTES:** Schema Registry API and Key is different with the API Key that we're creating on step 8 above
 
-Creating Schema Registry API Key
+**Creating Schema Registry API Key**
 Go to the Environment navigation menu on Confluent Cloud and at the right side you'll see the same menu pane
 <div align="center" padding=25px>
     <img src="images/sr-key.png" width=25% height=25%>
 </div> 
 
-Setup the schema registry connection on Imply
+**Setup the schema registry connection on Imply**
 <div align="center" padding=25px>
     <img src="images/cc-imply-5.png" width=75% height=75%>
     <img src="images/cc-imply-6.png" width=75% height=75%>
@@ -597,7 +604,7 @@ Setup the schema registry connection on Imply
 
 click **continue** if you see the data has been shown on the table.
 
-7. Click **start ingestion** and we will see in a minute that our table will be ingested by the data from Confluent Cloud
+8. Click **start ingestion** and we will see in a minute that our table will be ingested by the data from Confluent Cloud
 
 <div align="center" padding=25px>
     <img src="images/cc-imply-8.png" width=75% height=75%>
