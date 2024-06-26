@@ -520,7 +520,7 @@ If you’re interested in learning more about Flink, you can take the Apache Fli
         ) MR;
     ```
 
-1.  Now that you have a table of users who spend less than 30 seconds on the website, you can join it with `customers` table to retrive their contact information. Then you can stream this data in real time to MongoDB Atlas database where your marketing department can use this data to build a new campaign.
+1.  Now that you have a table of users who spend less than 30 seconds on the website, you can join it with `customers` table to retrive their contact information. Then you can stream this data in real time to Imply where your marketing department can use this data to build a new campaign or as a report.
     ```sql
     CREATE TABLE inactive_customers_enriched(
         user_id STRING,
