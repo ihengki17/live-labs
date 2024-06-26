@@ -14,7 +14,7 @@ In order to successfully complete this demo you need to install few tools before
 
 - If you don't have a Confluent Cloud account, sign up for a free trial [here](https://www.confluent.io/confluent-cloud/tryfree).
 - If you don't have a Imply Polaris account, sign up for a free trial
-    [here](https://signup.imply.io/get-started?_ga=2.98311711.1835424339.1718357314-1843485141.1718176292))
+    [here](https://bit.ly/3XCK1fY)
 - Install Confluent Cloud CLI by following the instructions [here](https://docs.confluent.io/confluent-cli/current/install.html).
 - Download and Install Terraform [here](https://developer.hashicorp.com/terraform/downloads?ajs_aid=837a4ee4-253b-4b3d-bf11-952575792ad1&product_intent=terraform)
 
@@ -276,6 +276,7 @@ You can create the connector either through CLI or Confluent Cloud web UI.
 3. Step into **dimt_kafka_cluster** or your new created cluster.
 
 ##You could skip to step number 12 if you've build the environment using Terraform
+
 4. On the same navigation menu, select **Topics** and click **Create Topic**. 
 5. Enter **clickstream** as the topic name, **1** as the number of partitions, and then click **Create with defaults**.
 5. Repeat the previous step and create a second topic name **customers** and **1** as the number of partitions.
@@ -546,9 +547,56 @@ If you’re interested in learning more about Flink, you can take the Apache Fli
 
 You can create the connection from Confluent Cloud to Imply Polaris using the connector on Kafka Ingestion on Imply Polaris.
 
-1. Sign-in to Imply Polaris
+1. Sign-in to Imply Polaris using your own organization domain and credentials
+https://id.imply.io/auth/
 
-2.
+<div align="center" padding=25px>
+    <img src="images/signinpolaris-1.png" width=75% height=75%>
+    <img src="images/signinpolaris.png" width=75% height=75%>
+</div>
+
+2. Create Connector from Confluent Cloud into Imply (Job)
+
+<div align="center" padding=25px>
+    <img src="images/cc-imply-1.png" width=75% height=75%>
+</div>
+
+3. Create a new table for the DIMT
+
+<div align="center" padding=25px>
+    <img src="images/cc-imply-2.png" width=75% height=75%>
+</div>
+
+4. Create the Connection for Confluent Cloud
+
+<div align="center" padding=25px>
+    <img src="images/cc-imply-3.png" width=75% height=75%>
+</div>
+
+5. Fill all the columns using your Confluent Cloud environment and Credentials and click create connection then you could proceed by click **next** on the right top
+
+<div align="center" padding=25px>
+    <img src="images/cc-imply-4.png" width=75% height=75%>
+</div>
+
+6. Now we need to create connection over our stream governance to parsing the schemas or structure to Imply Table.
+
+<div align="center" padding=25px>
+    <img src="images/cc-imply-5.png" width=75% height=75%>
+    <img src="images/cc-imply-6.png" width=75% height=75%>
+    <img src="images/cc-imply-7.png" width=75% height=75%>
+</div>
+
+click **continue** if you see the data has been shown on the table.
+
+7. Click **start ingestion** and we will see in a minute that our table will be ingested by the data from Confluent Cloud
+
+<div align="center" padding=25px>
+    <img src="images/cc-imply-8.png" width=75% height=75%>
+    <img src="images/cc-imply-9.png" width=75% height=75%>
+</div>
+
+
 ---
 
 ## CONGRATULATIONS
