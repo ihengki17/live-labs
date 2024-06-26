@@ -585,7 +585,7 @@ https://id.imply.io/auth/
 Creating Schema Registry API Key
 Go to the Environment navigation menu on Confluent Cloud and at the right side you'll see the same menu pane
 <div align="center" padding=25px>
-    <img src="images/sr-key.png" width=75% height=75%>
+    <img src="images/sr-key.png" width=100% height=100%>
 </div> 
 
 Setup the schema registry connection on Imply
