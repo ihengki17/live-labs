@@ -13,6 +13,7 @@ Welcome to HappyFeet store - Where Every Step Matters! In this workshop, we harn
 In order to successfully complete this demo you need to install few tools before getting started.
 
 - If you don't have a Confluent Cloud account, sign up for a free trial [here](https://www.confluent.io/confluent-cloud/tryfree).
+Paywall exclusion code **POPTOUT000YCHW09PG02C**
 - If you don't have a Imply Polaris account, sign up for a free trial
     [here](https://bit.ly/3XCK1fY)
 - Install Confluent Cloud CLI by following the instructions [here](https://docs.confluent.io/confluent-cli/current/install.html).
