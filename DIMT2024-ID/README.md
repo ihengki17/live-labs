@@ -275,7 +275,7 @@ You can create the connector either through CLI or Confluent Cloud web UI.
 2. Step into **Data_In_Motion_Tour** environment or your existing environment.
 3. Step into **dimt_kafka_cluster** or your new created cluster.
 
-##You could skip to step number 12 if you've build the environment using Terraform
+**You could skip to step number 12 if you've build the environment using Terraform**
 
 4. On the same navigation menu, select **Topics** and click **Create Topic**. 
 5. Enter **clickstream** as the topic name, **1** as the number of partitions, and then click **Create with defaults**.
