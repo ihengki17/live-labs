@@ -580,7 +580,15 @@ https://id.imply.io/auth/
 </div>
 
 6. Now we need to create connection over our stream governance to parsing the schemas or structure to Imply Table.
+**NOTES:** Schema Registry API and Key is different with the API Key that we're creating on step 8 above
 
+Creating Schema Registry API Key
+Go to the Environment navigation menu on Confluent Cloud and at the right side you'll see the same menu pane
+<div align="center" padding=25px>
+    <img src="images/sr-key.png" width=75% height=75%>
+</div> 
+
+Setup the schema registry connection on Imply
 <div align="center" padding=25px>
     <img src="images/cc-imply-5.png" width=75% height=75%>
     <img src="images/cc-imply-6.png" width=75% height=75%>
